@@ -10,13 +10,19 @@
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
     />
   </head>
-  <body>
+  <style>
+  body {
+    background-image: url("https://img.purch.com/rc/1920x1200/aHR0cDovL3d3dy5zcGFjZS5jb20vaW1hZ2VzL2kvMDAwLzA1Ni8xNzAvb3JpZ2luYWwvb3V0bGllci1nYWxheHktdWdjLTQ4NzktMTkyMC5qcGc=");
+    background-repeat: repeat;
+  }
+</style>
     <div class="container">
       <!-- Add Jumbotron to Header -->
       <div class="jumbotron text-center">
+        <div class="jumbotron text-center" style="background-image: url(https://thumbor.forbes.com/thumbor/960x0/https%3A%2F%2Fblogs-images.forbes.com%2Ferikkain%2Ffiles%2F2015%2F10%2FThe-Martian-Matt-Damon.jpg); height: 400px; background-position: center; background-size: cover;"></div>
         <h1>Mission to Mars</h1>
         <!-- Add a button to activate scraping script -->
-        <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+        <p><a class="btn btn-primary btn-lg" href="/scrape" role="button" style="background-color:rgb(255, 94, 0);">Scrape New Data</a></p>
       </div>
 
       <!-- Add section for Mars News -->
@@ -25,7 +31,7 @@
           <div class="media">
             <div class="media-body">
               <h2>Latest Mars News</h2>
-              <h4 class="media-heading">{{ mars.news_title }}</h4>
+              <h4 class="media-heading" style="font-family:Futura"></h4>>{{ mars.news_title }}</h4>
               <p>{{ mars.news_paragraph }}</p>
             </div>
           </div>
@@ -54,23 +60,26 @@
         </div>
       </div>
 
-      <!-- Section for Mars Hemispheres -->
-      <div class="row" id="mars-hemispheres">
-        <div class="page-header">
-          <h2 class="text-center">Mars Hemispheres</h2>
-        </div>
-
-        {% for hemisphere in mars.hemispheres %}
-        <div class="col-md-6">
-          <div class="thumbnail">
-            <img src="{{hemisphere.img_urls | default('static/images/error.png', true)}}" alt="...">
-            <div class="caption">
-              <h3>{{hemisphere.title}}</h3>
-            </div>
+        <!-- Mars Hemispheres Section -->
+        <div class="row" id="mars-hemispheres">
+          <div class="page-header">
+              <h2 class="text-center">Mars Hemispheres</h2>
           </div>
-        </div>
-        {% endfor %}
+          <!-- Loop  4 hemispheres -->
+          {% for hemisphere in mars.hemispheres %}
+          <div class="col-md-3">
+              <div class="thumbnail">
+                  <img src="{{ hemisphere.img_url | default('static/images/error.png', true) }}" alt="...">
+                  <div class="caption">
+                      <h3>{{ hemisphere.title }}</h3>
+                  </div>
+              </div>
+          </div>
+          <!-- End For Loop -->
+          {% endfor %}
+      <!-- End of Mars Hemispheres Section -->
       </div>
-    </div>
-  </body>
+  <!-- End of container -->
+  </div>
+</body>
 </html>
